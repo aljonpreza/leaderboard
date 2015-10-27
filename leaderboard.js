@@ -1,23 +1,14 @@
-if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
+// Creates a collection of players with a reference
+PlayersList = new Mongo.Collection('players'); // No var makes it global
 
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
-    }
-  });
+/** To insert, must be in JSON form
+ * PlayersList.insert({ name: "Mary", score: 0 }); **/
 
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
-    }
-  });
-}
+/** Returns array of database
+ * PlayersList.find().fetch(); **/
 
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
-}
+/** Retrieve a selection of data
+ * PlayersList.find({ name: "David" }).fetch(); **/
+
+/** Counts the number of documents
+ * PlayersList.find().count(); **/
